@@ -7,14 +7,20 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 
+// Import Vercel Analytics
+import { Analytics } from "@vercel/analytics/react";
+
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <ThemeProvider defaultTheme="light" storageKey="portfolio-theme">
       <TooltipProvider>
+        {/* Existing Toasters */}
         <Toaster />
         <Sonner />
+
+        {/* React Router */}
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
@@ -22,6 +28,9 @@ const App = () => (
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
+
+        {/* Vercel Analytics */}
+        <Analytics />
       </TooltipProvider>
     </ThemeProvider>
   </QueryClientProvider>
